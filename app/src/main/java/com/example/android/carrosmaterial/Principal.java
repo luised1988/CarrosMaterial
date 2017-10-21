@@ -1,15 +1,36 @@
 package com.example.android.carrosmaterial;
 
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class Principal extends AppCompatActivity {
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
+public class Principal extends AppCompatActivity implements AdaptadorCarro.OnCarroClickListener{
+
+    private RecyclerView listado;
+    private ArrayList<Carro> carros;
+    private Resources res;
+    private AdaptadorCarro adapter;
+    private LinearLayoutManager llm;
+    private Intent i;
+    private DatabaseReference databaseReference;
+    private final String BD="Carros";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,12 +39,49 @@ public class Principal extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        listado = (RecyclerView)findViewById(R.id.lstopciones);
+
+        res = this.getResources();
+        carros = new ArrayList<>();
+
+        llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+
+        adapter = new AdaptadorCarro(this.getApplicationContext(),carros,this);
+
+        listado.setLayoutManager(llm);
+        listado.setAdapter(adapter);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        databaseReference.child(BD).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                carros.clear();
+                if(dataSnapshot.exists()){
+                    for(DataSnapshot snapshot:dataSnapshot.getChildren()){
+                        Carro c = snapshot.getValue(Carro.class);
+                        carros.add(c);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+                Datos.setCarros(carros);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                i=new Intent(Principal.this,RegistroCarros.class);
+                startActivity(i);
             }
         });
     }
@@ -48,5 +106,10 @@ public class Principal extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCarroClick(Carro c) {
+
     }
 }
