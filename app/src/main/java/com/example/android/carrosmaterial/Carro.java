@@ -5,6 +5,7 @@ package com.example.android.carrosmaterial;
  */
 
 public class Carro {
+
     private String id;
     private int foto;
     private String placa;
@@ -101,4 +102,10 @@ public class Carro {
     public void setId(String id) {
         this.id = id;
     }
+
+    public void Eliminar(){
+        Datos.eliminarCarros(this);
+    }
+
+
 }

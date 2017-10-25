@@ -21,12 +21,19 @@ public class Datos {
         databaseReference.child(db).child(c.getId()).setValue(c);
 
     }
+
+    public static void setCarros(ArrayList<Carro> carros){
+        Datos.carros = carros;
+    }
+
     public static  ArrayList<Carro>obteberCarros(){
         return carros;
     }
 
-    public static void setCarros(ArrayList<Carro>per){
-        carros=per;
+
+
+    public static void eliminarCarros(Carro c){
+        databaseReference.child(db).child(c.getId()).removeValue();
     }
 
 

@@ -39,5 +39,10 @@
 
     <string name="registro_guardado">Registro Guardado</string>
 
+    <string name="titulo_eliminar_mensaje">Eliminar Carro</string>
+    <string name="eliminar_mensaje">¿Está seguro que desea eliminar este carro?</string>
+    <string name="si_eliminar_mensaje">Si</string>
+    <string name="no_eliminar_mensaje">No</string>
+
 
 </resources>
