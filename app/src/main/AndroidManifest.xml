@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".DetalleCarro" />
-        <activity android:name=".RegistroCarros"></activity>
+        <activity android:name=".RegistroCarros" />
+        <activity android:name=".EditarCarro"></activity>
     </application>
 
 </manifest>

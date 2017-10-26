@@ -107,5 +107,7 @@ public class Carro {
         Datos.eliminarCarros(this);
     }
 
-
+    public void Modificar(){
+        Datos.EditarCarro(this);
+    }
 }

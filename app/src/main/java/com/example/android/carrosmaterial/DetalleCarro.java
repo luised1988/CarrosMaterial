@@ -99,4 +99,10 @@ public class DetalleCarro extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void EditarCarro(View v) {
+        Intent i = new Intent(DetalleCarro.this,EditarCarro.class);
+        i.putExtra("datos",bundle);
+        startActivity(i);
+    }
+
 }

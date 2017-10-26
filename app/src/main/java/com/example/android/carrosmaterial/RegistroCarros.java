@@ -78,19 +78,28 @@ public class RegistroCarros extends AppCompatActivity {
     }
 
     public void guardar (View v){
-        if (validar()){
+        if (validar()) {
+            String placa_caja;
+            placa_caja = txtPlaca.getText().toString();
 
-            Carro c = new Carro(Metodos.fotoAleatoria(fotos), txtPlaca.getText().toString(), marca.getSelectedItemPosition(), modelo.getSelectedItemPosition(),color.getSelectedItemPosition(),
-                    txtPrecio.getText().toString());
+            if (Datos.ExistePlaca1(placa_caja)) {
+                Toast.makeText(this, res.getString(R.string.existe_placa), Toast.LENGTH_SHORT).show();
+                txtPlaca.setText("");
+                txtPlaca.requestFocus();
+            } else {
+
+                Carro c = new Carro(Metodos.fotoAleatoria(fotos), txtPlaca.getText().toString(), marca.getSelectedItemPosition(), modelo.getSelectedItemPosition(), color.getSelectedItemPosition(),
+                        txtPrecio.getText().toString());
 
 
-            c.guardar();
+                c.guardar();
 
 
-            Snackbar.make(v, res.getString(R.string.registro_guardado), Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+                Snackbar.make(v, res.getString(R.string.registro_guardado), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
 
-            limpiar();
+                limpiar();
+            }
         }
     }
 

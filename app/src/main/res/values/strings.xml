@@ -44,5 +44,13 @@
     <string name="si_eliminar_mensaje">Si</string>
     <string name="no_eliminar_mensaje">No</string>
 
+    <string name="existe_placa">Esta placa ya está registrada</string>
+    <string name="editar_carro">Editar Carro</string>
+
+    <string name="mensaje_error_placa">Debe ingresar la placa</string>
+
+    <string name="mensaje_error_precio">Debe ingresar el precio</string>
+    <string name="mensaje_modificado">Carro Modificado</string>
+    <string name="cancelar">Cancelar</string>
 
 </resources>

@@ -43,7 +43,7 @@ public class AdaptadorCarro extends RecyclerView.Adapter<AdaptadorCarro.CarroVie
         holder.foto.setImageDrawable(ResourcesCompat.getDrawable(res,c.getFoto(),null));
         holder.placa.setText(c.getPlaca());
         holder.marca.setText(res.getStringArray(R.array.marca)[c.getMarca()]);
-        holder.modelo.setText(res.getStringArray(R.array.marca)[c.getModelo()]);
+        holder.modelo.setText(res.getStringArray(R.array.modelo)[c.getModelo()]);
         holder.precio.setText(c.getPrecio());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

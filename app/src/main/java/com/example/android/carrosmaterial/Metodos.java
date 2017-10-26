@@ -14,4 +14,13 @@ public class Metodos {
         fotoSeleccionada = r.nextInt(fotos.size());
         return fotos.get(fotoSeleccionada);
     }
+
+    public static boolean exitencia_carro(ArrayList<Carro> carros, String placa){
+        for (int i = 0; i <carros.size() ; i++) {
+            if(carros.get(i).getPlaca().equals(placa)){
+                return true;
+            }
+        }
+        return false;
+    }
 }
